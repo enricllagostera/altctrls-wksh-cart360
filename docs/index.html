@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>CART 360 | WKSH | Alternative controllers</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <script src="js/remark-latest.min.js"></script>
+
+    <script>
+        remark.macros.scale = function (percentage)
+        {
+            var url = this;
+            return '<img src="' + url + '" style="width: ' + percentage + '" />';
+        };
+
+        var slideshow = remark.create({
+            ratio: '16:9',
+            sourceUrl: 'slides.md',
+            slideNumberFormat: ''
+        });
+    </script>
+
+</body>
+
+</html>
