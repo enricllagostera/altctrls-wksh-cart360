@@ -331,7 +331,7 @@ class:middle
 
 ## So many sensors!
 
-[Examples of code and using the different sensors in the kit.](https://wiki.keyestudio.com/index.php/Ks0068_keyestudio_37_in_1_Sensor_Kit_for_Arduino_Starters)
+[Examples of code using the different sensors in the kit.](https://wiki.keyestudio.com/index.php/Ks0068_keyestudio_37_in_1_Sensor_Kit_for_Arduino_Starters)
 
 ---
 class: middle
@@ -339,7 +339,7 @@ class: middle
 ## Modding [Veloce](https://torfi.itch.io/veloce)
 
 - How are in-game effects codified by the game application?
-- What data ranges are expected? 
+- What data ranges are expected?
 - What sensors could work for this?
 - What world changes could be interesting for these in-game effects?
 
@@ -348,8 +348,14 @@ class:middle
 
 ### Simulating a [mouse](https://www.arduino.cc/reference/en/language/functions/usb/mouse/)
 
-- Using an accelerometer for X and Y movement;
+- Using an [accelerometer](https://learn.sparkfun.com/tutorials/adxl337-and-adxl377-accelerometer-hookup-guide/example-code) for X and Y movement;
 - [Example code for the ADXL337 accelerometer](https://github.com/sparkfun/ADXL337_Breakout/blob/master/firmware/ADXL337_example/ADXL337_example.ino);
+
+---
+class: top left invert
+background-image: url(images/accelerometer.jpg)
+
+.box[wiring the accelerometer]
 
 ---
 Simulating a mouse with an accelerometer (1/2)
