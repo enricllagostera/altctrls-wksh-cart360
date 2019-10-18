@@ -2,12 +2,12 @@ class: middle right
 
 ## Alternative Controllers
 
- [Enric Llagostera](http://enric.llagostera.com.br)
-
 Workshop for CART 360 Fall 2019 on October 18
 
 Slides: <https://enricllagostera.github.io/altctrls-wksh-cart360/>
-Github: https://github.com/enricllagostera/altctrls-wksh-cart360
+GitHub: <https://github.com/enricllagostera/altctrls-wksh-cart360>
+
+by [Enric Llagostera](http://enric.llagostera.com.br)
 
 ---
 class: middle
@@ -63,7 +63,7 @@ background-image: url(images/diagram-for-slides.png)
 ---
 class: middle center
 
-_a situation-centered approach_
+_a situation-focused approach_
 
 ## expressiveness = <br/> embodied actions + things
 
