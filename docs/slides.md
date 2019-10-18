@@ -1,10 +1,13 @@
 class: middle right
 
-# Alternative Controllers
+## Alternative Controllers
 
  [Enric Llagostera](http://enric.llagostera.com.br)
 
 Workshop for CART 360 Fall 2019 on October 18
+
+Slides: <https://enricllagostera.github.io/altctrls-wksh-cart360/>
+Github: https://github.com/enricllagostera/altctrls-wksh-cart360
 
 ---
 class: middle
