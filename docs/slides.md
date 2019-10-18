@@ -39,7 +39,7 @@ class: invert middle center
 class: top
 background-image: url(images/swink.png)
 
-.box[Classic model of interaction (Swink, 2008)]
+.box["Classic" model of interaction (Swink, 2008)]
 
 ---
 class: middle center
@@ -48,6 +48,8 @@ class: middle center
 
 ---
 class: middle center
+
+_a conventional understanding_
 
 ## expressiveness = <br/> verbs + physical layer
 
@@ -58,7 +60,9 @@ background-image: url(images/diagram-for-slides.png)
 ---
 class: middle center
 
-## expressiveness = <br/> (embodied) actions + things
+_a situation-centered approach_
+
+## expressiveness = <br/> embodied actions + things
 
 ---
 
@@ -264,7 +268,7 @@ class:middle
 
 <https://flappybird.io/>
 
-**Situation:** Flap wings (_in-game effect, instantaneous_) -> Sensed as space key press or mouse down (_game application expects a mouse or keyboard via HID_) -> Finger movement to activate a button (_world change_).
+**Situation:** Flap wings (_in-game effect, instantaneous_) -> Sensed as space key press or mouse down (_game application expects a mouse or keyboard via HID (protocol)_) -> Finger movement to activate a button (_world change_).
 
 **Changes:** Clap hands / make noise (_world change, instantaneous_) -> Sensed as loudness change (_sensor state goes over a defined threshold on data_) -> Sent to _game application_ as space key press (_over a simulated HID keyboard_).
 
@@ -358,7 +362,7 @@ background-image: url(images/accelerometer.jpg)
 .box[wiring the accelerometer]
 
 ---
-Simulating a mouse with an accelerometer (1/2)
+#### Simulating a mouse with an accelerometer (1/2)
 
 ```c
 #include <Mouse.h>
@@ -389,7 +393,7 @@ void loop()
 ```
 
 ---
-Simulating a mouse with an accelerometer (2/2)
+#### Simulating a mouse with an accelerometer (2/2)
 
 ```c
 // Same functionality as Arduino's standard map function, except using floats
@@ -397,6 +401,101 @@ float mapf(float x, float in_min, float in_max, float out_min, float out_max)
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
+```
+
+---
+class:middle
+
+## What about _gamepads_?
+
+- Library: <https://github.com/MHeironimus/ArduinoJoystickLibrary>.
+- Similar use to keyboard and mouse.
+- You can define one or more joysticks and send axis and button states to the game application.
+
+---
+
+#### Joystick button example (1/2)
+
+```c
+#include <Joystick.h>
+
+// Create the Joystick
+Joystick_ Joystick;
+
+// Constant that maps the phyical pin to the joystick button.
+const int pinToButtonMap = 9;
+
+void setup() {
+  // Initialize Button Pins
+  pinMode(pinToButtonMap, INPUT_PULLUP);
+
+  // Initialize Joystick Library
+  Joystick.begin();
+}
+
+// Last state of the button
+int lastButtonState = 0;
+```
+
+---
+
+#### Joystick button example (2/2)
+
+```c
+void loop() {
+
+  // Read pin values
+  int currentButtonState = !digitalRead(pinToButtonMap);
+  if (currentButtonState != lastButtonState)
+  {
+    Joystick.setButton(0, currentButtonState);
+    lastButtonState = currentButtonState;
+  }
+
+  delay(50);
+}
+```
+
+---
+
+#### Joystick axis example (1/2)
+
+```c
+#include <Joystick.h>
+const int pinToButtonMap = 10;
+Joystick_ Joystick;
+int scale = 3;
+float speedScale = 1023;
+
+float mapf(float x, float in_min, float in_max, float out_min, float out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+void setup() {
+  Joystick.begin();
+}
+```
+
+---
+
+#### Joystick axis example (2/2)
+```c
+void loop() {
+  int rawX = analogRead(A0);
+  int rawY = analogRead(A1);
+  int rawZ = analogRead(A2);
+  
+  float scaledX, scaledY, scaledZ; // Scaled values for each axis
+  scaledX = mapf(rawX, 280, 400, 0, speedScale); // 3.3/5 * 1023 =~ 675
+  scaledY = mapf(rawY, 280, 400, 0, speedScale);
+  scaledZ = mapf(rawZ, 280, 400, 0, speedScale);
+
+  Joystick.setYAxis(constrain(speedScale-scaledY, 0, 1023));
+  Joystick.setXAxis(constrain(scaledZ, 0, 1023));
+  delay(20);
+}
+
 ```
 
 ---
@@ -410,3 +509,10 @@ Nova, Nicolas, and Laurent Bolli. Joypads!: The Design of Game Controllers. 1 ed
 Swink, Steve. Game Feel: A Game Designer’s Guide to Virtual Sensation. 1 edition. Amsterdam ; Boston: CRC Press, 2008.
 
 Tons of interesting alt ctrl projects: <http://shakethatbutton.com>
+
+---
+class:middle
+
+### Thank you!
+
+enric.llagostera@gmail.com
