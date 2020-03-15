@@ -5,7 +5,7 @@ float mouseSpeed = 20.0;
 void setup()
 {
   // Initialize serial communication at 115200 baud
-  Serial.begin(115200);
+  //Serial.begin(115200);
   Mouse.begin();
 }
 
@@ -20,6 +20,10 @@ void loop()
   scaledX = mapf(rawX, 0, 675, -scale, scale); // 3.3/5 * 1023 =~ 675
   scaledY = mapf(rawY, 0, 675, -scale, scale);
   scaledZ = mapf(rawZ, 0, 675, -scale, scale);
+
+  if(scaledZ < 0.2 && scaledZ > -0.2){
+    scaledZ = 0;
+  }
   
   delay(20); // Minimum delay of 2 milliseconds between sensor reads (500 Hz)
   Mouse.move(scaledZ * mouseSpeed, -scaledY * mouseSpeed, 0);
